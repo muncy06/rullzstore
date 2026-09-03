@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RullzStore - Admin Dashboard</title>
     <!-- Favicon Logo -->
-    <link rel="icon" type="image/png" href="logorullz.png">
+    <link rel="icon" type="image/png" href="logo.png">
     
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -13,54 +13,77 @@
             theme: {
                 extend: {
                     colors: {
-                        'brand-blue': '#1e3a8a',   
-                        'brand-btn': '#2563eb', 
+                        'dark-bg': '#070b14',
+                        'card-bg': '#111828',
+                        'brand-blue': '#0055ff', 
+                        'brand-cyan': '#00d2ff',
+                        'brand-btn': '#0078ff', 
                         'brand-red': '#ef4444',
+                    },
+                    boxShadow: {
+                        'neon': '0 0 10px rgba(0, 210, 255, 0.4), 0 0 20px rgba(0, 120, 255, 0.2)',
+                        'neon-hover': '0 0 15px rgba(0, 210, 255, 0.6), 0 0 30px rgba(0, 120, 255, 0.4)',
                     }
                 }
             }
         }
     </script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #f4f7fe; }
-        .loader { border: 3px solid #f3f3f3; border-top: 3px solid #2563eb; border-radius: 50%; width: 20px; height: 20px; animation: spin 1s linear infinite; display: inline-block; }
+        body { font-family: 'Inter', sans-serif; background-color: #070b14; color: #e2e8f0; }
+        .loader { border: 3px solid #1f2937; border-top: 3px solid #00d2ff; border-radius: 50%; width: 20px; height: 20px; animation: spin 1s linear infinite; display: inline-block; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        ::-webkit-scrollbar { width: 5px; height: 5px; }
-        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-thumb { background: #374151; border-radius: 4px; }
+        ::-webkit-scrollbar-track { background: #070b14; }
+        
+        .neon-animate { animation: pulse-glow 2s infinite; }
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 8px rgba(0, 210, 255, 0.3); }
+            50% { box-shadow: 0 0 16px rgba(0, 210, 255, 0.6); }
+        }
     </style>
 </head>
-<body class="text-gray-800 pb-24">
+<body class="pb-24 selection:bg-brand-cyan selection:text-black">
 
     <!-- HEADER ADMIN -->
-    <header class="bg-white shadow-sm sticky top-0 z-40">
+    <header class="bg-[#0b1120]/90 backdrop-blur-md shadow-[0_4px_30px_rgba(0,0,0,0.5)] border-b border-gray-800 sticky top-0 z-40">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center max-w-6xl">
-            <a href="#" class="flex items-center gap-2.5">
-                <img src="logorullz.png" alt="Logo" class="h-9 md:h-10 object-contain rounded-lg" onerror="this.style.display='none'">
-                <span class="font-extrabold text-lg md:text-2xl text-brand-blue tracking-tight">Rullz<span class="text-brand-btn">Store</span> <span class="text-[10px] md:text-xs bg-brand-red text-white px-2 py-0.5 rounded-full uppercase">Admin</span></span>
+            <a href="#" class="flex items-center gap-2.5 group">
+                <div class="relative">
+                    <div class="absolute inset-0 bg-brand-cyan rounded-full blur opacity-30 group-hover:opacity-60 transition duration-300"></div>
+                    <img src="logo.png" alt="Logo" class="h-9 md:h-11 object-contain rounded-full relative z-10 border border-gray-700" onerror="this.style.display='none'">
+                </div>
+                <span class="font-black text-lg md:text-2xl text-white tracking-tight uppercase italic">
+                    RULLZ<span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-cyan to-brand-blue">STORE</span> 
+                    <span class="text-[9px] md:text-[10px] bg-brand-red text-white px-2 py-0.5 rounded-full uppercase ml-1 shadow-[0_0_10px_rgba(239,68,68,0.5)] align-middle">Admin</span>
+                </span>
             </a>
             <div class="flex items-center gap-2">
-                <button onclick="logoutAdmin()" class="bg-gray-100 text-gray-700 hover:bg-gray-200 text-xs font-semibold px-2.5 py-1.5 rounded-lg transition">Logout</button>
+                <button onclick="logoutAdmin()" class="bg-[#111827] border border-gray-700 text-gray-400 hover:text-white hover:border-red-500 hover:bg-red-500/10 text-xs font-bold px-4 py-2 rounded-xl transition duration-300 uppercase tracking-wide">Logout</button>
             </div>
         </div>
     </header>
 
     <!-- HALAMAN LOGIN ADMIN -->
-    <div id="admin-login-screen" class="container mx-auto px-4 mt-16 md:mt-20 max-w-md">
-        <div class="bg-white rounded-2xl shadow-xl p-6 md:p-8 border border-gray-100">
-            <div class="text-center mb-6">
-                <div class="w-12 h-12 mx-auto mb-3 rounded-full overflow-hidden border-2 border-blue-200 shadow-inner flex items-center justify-center bg-white">
-    <img src="logorullz.png" alt="Gembok Keamanan" class="w-8 h-8 object-contain opacity-90">
-</div>
-                <h2 class="text-lg md:text-xl font-extrabold text-gray-800">Admin Login</h2>
-                <p class="text-xs text-gray-500 mt-1">Masukkan password untuk mengakses database & panel kontrol.</p>
+    <div id="admin-login-screen" class="container mx-auto px-4 mt-16 md:mt-24 max-w-md">
+        <div class="bg-card-bg rounded-3xl shadow-[0_0_50px_rgba(0,120,255,0.1)] p-6 md:p-8 border border-gray-800 relative overflow-hidden">
+            <div class="absolute -top-20 -right-20 w-40 h-40 bg-brand-cyan rounded-full blur-[80px] opacity-20"></div>
+            
+            <div class="text-center mb-8 relative z-10">
+                <div class="w-14 h-14 mx-auto mb-4 rounded-full overflow-hidden border border-brand-cyan/30 shadow-neon flex items-center justify-center bg-[#070b14] neon-animate">
+                    <img src="logo.png" alt="Admin" class="w-10 h-10 object-contain opacity-90">
+                </div>
+                <h2 class="text-xl md:text-2xl font-black text-white italic tracking-wide">SYSTEM ACCESS</h2>
+                <p class="text-xs text-gray-400 mt-1 font-medium">Otorisasi admin diperlukan.</p>
             </div>
-            <form onsubmit="handleAdminLogin(event)" class="space-y-4">
+            
+            <form onsubmit="handleAdminLogin(event)" class="space-y-5 relative z-10">
                 <div>
-                    <label class="block text-xs font-bold text-gray-700 mb-1">Password Admin</label>
+                    <label class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Password Akses</label>
                     <div class="relative">
-                        <input type="password" id="admin-password" required placeholder="••••••••" class="w-full px-4 py-2.5 pr-10 bg-gray-50 border rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-btn transition">
-                        <button type="button" onclick="togglePasswordVisibility()" class="absolute inset-y-0 right-0 px-3 flex items-center text-gray-400 hover:text-gray-600 focus:outline-none">
+                        <input type="password" id="admin-password" required placeholder="••••••••" class="w-full px-4 py-3.5 bg-[#0b1120] border border-gray-700 rounded-xl text-sm text-white placeholder-gray-600 focus:outline-none focus:border-brand-cyan focus:ring-1 focus:ring-brand-cyan transition">
+                        <button type="button" onclick="togglePasswordVisibility()" class="absolute inset-y-0 right-0 px-4 flex items-center text-gray-500 hover:text-brand-cyan transition focus:outline-none">
                             <svg id="eye-icon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
@@ -68,80 +91,88 @@
                         </button>
                     </div>
                 </div>
-                <button type="submit" class="w-full bg-brand-btn text-white font-bold py-3 rounded-xl hover:bg-blue-700 transition shadow-md text-sm">
-                    Masuk Dashboard
+                <button type="submit" class="w-full bg-gradient-to-r from-brand-btn to-brand-cyan text-black font-black italic py-3.5 rounded-xl hover:shadow-neon-hover transition-all text-sm uppercase tracking-widest">
+                    LOGIN DATABASE
                 </button>
             </form>
         </div>
     </div>
 
     <!-- PANEL UTAMA ADMIN -->
-    <main id="admin-dashboard-panel" class="container mx-auto px-3 md:px-4 mt-4 md:mt-6 max-w-6xl hidden space-y-4 md:space-y-6">
+    <main id="admin-dashboard-panel" class="container mx-auto px-3 md:px-4 mt-6 max-w-6xl hidden space-y-5 md:space-y-6">
         
         <!-- STATISTIK PENJUALAN (Hanya Status Sukses) -->
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-4">
-            <div class="bg-white rounded-2xl p-4 md:p-5 border border-gray-100 shadow-sm flex items-center gap-4">
-                <div class="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-blue-50 text-brand-btn flex items-center justify-center text-xl md:text-2xl font-bold flex-shrink-0">📅</div>
-                <div>
-                    <p class="text-[11px] md:text-xs text-gray-500 font-medium">Penjualan Hari Ini</p>
-                    <h3 id="stat-today" class="text-base md:text-lg font-extrabold text-gray-800 mt-0.5">Rp 0</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-5">
+            <div class="bg-card-bg rounded-2xl p-5 border border-gray-800 shadow-sm flex items-center gap-4 hover:border-brand-cyan/50 transition duration-300 relative overflow-hidden group">
+                <div class="absolute right-0 top-0 w-24 h-24 bg-brand-cyan blur-3xl opacity-0 group-hover:opacity-10 transition duration-500"></div>
+                <div class="w-12 h-12 rounded-xl bg-brand-blue/10 border border-brand-cyan/20 text-brand-cyan flex items-center justify-center text-xl font-bold flex-shrink-0 relative z-10 shadow-inner">📅</div>
+                <div class="relative z-10">
+                    <p class="text-[10px] md:text-xs text-gray-500 font-bold uppercase tracking-wider">Hari Ini</p>
+                    <h3 id="stat-today" class="text-base md:text-xl font-black text-white mt-0.5 tracking-tight">Rp 0</h3>
                 </div>
             </div>
-            <div class="bg-white rounded-2xl p-4 md:p-5 border border-gray-100 shadow-sm flex items-center gap-4">
-                <div class="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center text-xl md:text-2xl font-bold flex-shrink-0">📊</div>
-                <div>
-                    <p class="text-[11px] md:text-xs text-gray-500 font-medium">Penjualan Kemarin</p>
-                    <h3 id="stat-yesterday" class="text-base md:text-lg font-extrabold text-gray-800 mt-0.5">Rp 0</h3>
+            
+            <div class="bg-card-bg rounded-2xl p-5 border border-gray-800 shadow-sm flex items-center gap-4 hover:border-brand-cyan/50 transition duration-300 relative overflow-hidden group">
+                <div class="absolute right-0 top-0 w-24 h-24 bg-brand-blue blur-3xl opacity-0 group-hover:opacity-10 transition duration-500"></div>
+                <div class="w-12 h-12 rounded-xl bg-brand-blue/10 border border-brand-blue/30 text-blue-400 flex items-center justify-center text-xl font-bold flex-shrink-0 relative z-10 shadow-inner">📊</div>
+                <div class="relative z-10">
+                    <p class="text-[10px] md:text-xs text-gray-500 font-bold uppercase tracking-wider">Kemarin</p>
+                    <h3 id="stat-yesterday" class="text-base md:text-xl font-black text-white mt-0.5 tracking-tight">Rp 0</h3>
                 </div>
             </div>
-            <div class="bg-white rounded-2xl p-4 md:p-5 border border-gray-100 shadow-sm flex items-center gap-4">
-                <div class="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-green-50 text-green-600 flex items-center justify-center text-xl md:text-2xl font-bold flex-shrink-0">💰</div>
-                <div>
-                    <p class="text-[11px] md:text-xs text-gray-500 font-medium">Total Keseluruhan</p>
-                    <h3 id="stat-total" class="text-base md:text-lg font-extrabold text-brand-red mt-0.5">Rp 0</h3>
+            
+            <div class="bg-card-bg rounded-2xl p-5 border border-gray-800 shadow-sm flex items-center gap-4 hover:border-brand-cyan/50 transition duration-300 relative overflow-hidden group">
+                <div class="absolute right-0 top-0 w-24 h-24 bg-green-500 blur-3xl opacity-0 group-hover:opacity-10 transition duration-500"></div>
+                <div class="w-12 h-12 rounded-xl bg-green-500/10 border border-green-500/20 text-green-400 flex items-center justify-center text-xl font-bold flex-shrink-0 relative z-10 shadow-inner">💰</div>
+                <div class="relative z-10">
+                    <p class="text-[10px] md:text-xs text-gray-500 font-bold uppercase tracking-wider">Total Revenue</p>
+                    <h3 id="stat-total" class="text-base md:text-xl font-black text-brand-cyan mt-0.5 tracking-tight drop-shadow-md">Rp 0</h3>
                 </div>
             </div>
         </div>
 
-            <a href="pendapatan.html" class="inline-flex items-center">
-                <span>Detail Pendapatan</span>
-                <span class="text-gray-400"> →</span>
+        <div class="flex justify-end px-2">
+            <a href="pendapatan.html" class="inline-flex items-center text-xs font-bold text-gray-400 hover:text-brand-cyan transition">
+                <span class="border-b border-dashed border-gray-600 pb-0.5">Lihat Laporan Lengkap</span>
+                <span class="ml-1">➔</span>
             </a>
+        </div>
+
         <!-- NAVIGASI TAB ADMIN -->
-        <div class="flex gap-2 border-b pb-3 overflow-x-auto">
-            <button onclick="switchAdminTab('products')" id="tab-btn-products" class="bg-brand-btn text-white text-xs font-bold px-4 py-2 rounded-xl transition shadow-sm whitespace-nowrap">📦 Manajemen Produk</button>
-            <button onclick="switchAdminTab('orders')" id="tab-btn-orders" class="bg-gray-100 text-gray-600 text-xs font-bold px-4 py-2 rounded-xl transition hover:bg-gray-200 whitespace-nowrap">🛒 Kelola Pesanan</button>
+        <div class="flex gap-2 border-b border-gray-800 pb-4 overflow-x-auto hide-scroll">
+            <button onclick="switchAdminTab('products')" id="tab-btn-products" class="bg-gradient-to-r from-brand-blue to-brand-cyan text-black text-xs font-black italic px-5 py-2.5 rounded-xl transition-all shadow-neon whitespace-nowrap border border-cyan-400/50 uppercase tracking-wide">📦 Manajemen Produk</button>
+            <button onclick="switchAdminTab('orders')" id="tab-btn-orders" class="bg-[#111827] text-gray-400 text-xs font-bold px-5 py-2.5 rounded-xl transition hover:text-brand-cyan hover:bg-[#1f2937] border border-gray-800 whitespace-nowrap uppercase tracking-wide">🛒 Kelola Pesanan</button>
         </div>
 
         <!-- SECTION 1: MANAJEMEN PRODUK -->
-        <div id="admin-section-products" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-4 md:p-6">
-            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-4 md:mb-6 border-b pb-4">
+        <div id="admin-section-products" class="bg-card-bg rounded-2xl shadow-sm border border-gray-800 p-4 md:p-6 relative overflow-hidden">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-4 md:mb-6 border-b border-gray-800 pb-4 relative z-10">
                 <div>
-                    <h2 class="text-base md:text-lg font-extrabold text-gray-800">Manajemen Database Produk</h2>
-                    <p class="text-xs text-gray-500">Kelola produk.</p>
+                    <h2 class="text-lg md:text-xl font-black text-white italic tracking-wide">DATABASE PRODUK</h2>
+                    <p class="text-xs text-gray-500 mt-1 font-medium">Kelola, tambah, dan edit produk katalog.</p>
                 </div>
-                <div class="flex items-center gap-2 w-full sm:w-auto">
-                    <button onclick="loadAdminProducts()" class="flex-1 sm:flex-none bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs font-bold px-3 py-2 rounded-xl transition">🔄 Refresh</button>
-                    <button onclick="openAddProductModal()" class="flex-1 sm:flex-none bg-brand-btn hover:bg-blue-700 text-white text-xs font-bold px-4 py-2 rounded-xl transition shadow-sm">+ Tambah</button>
+                <div class="flex items-center gap-3 w-full sm:w-auto">
+                    <button onclick="loadAdminProducts()" class="flex-1 sm:flex-none bg-[#111827] hover:bg-[#1f2937] border border-gray-700 text-gray-300 text-[11px] font-bold px-4 py-2.5 rounded-xl transition">🔄 Refresh</button>
+                    <button onclick="openAddProductModal()" class="flex-1 sm:flex-none bg-gradient-to-r from-brand-btn to-brand-cyan text-black text-[11px] font-black italic px-5 py-2.5 rounded-xl transition-all shadow-neon hover:shadow-neon-hover border border-cyan-400/50 uppercase tracking-widest">+ TAMBAH</button>
                 </div>
             </div>
 
-            <div class="overflow-x-auto">
-                <table class="w-full text-left border-collapse text-xs min-w-[650px]">
+            <div class="overflow-x-auto relative z-10">
+                <table class="w-full text-left border-collapse text-xs min-w-[700px]">
                     <thead>
-                        <tr class="bg-gray-50 text-gray-500 border-b">
-                            <th class="p-3 font-bold">ID Produk</th>
-                            <th class="p-3 font-bold">Gambar</th>
-                            <th class="p-3 font-bold">Nama Produk</th>
-                            <th class="p-3 font-bold">Kategori/Durasi</th>
-                            <th class="p-3 font-bold">Harga Jual</th>
-                            <th class="p-3 font-bold">Badge</th>
-                            <th class="p-3 font-bold text-center">Aksi</th>
+                        <tr class="bg-[#0b1120] text-gray-400 border-b border-gray-800">
+                            <th class="p-3 font-bold uppercase tracking-wider text-[10px]">ID Produk</th>
+                            <th class="p-3 font-bold uppercase tracking-wider text-[10px]">Visual</th>
+                            <th class="p-3 font-bold uppercase tracking-wider text-[10px]">Nama Item</th>
+                            <th class="p-3 font-bold uppercase tracking-wider text-[10px]">Varian</th>
+                            <th class="p-3 font-bold uppercase tracking-wider text-[10px]">Harga (Rp)</th>
+                            <th class="p-3 font-bold uppercase tracking-wider text-[10px]">Status (Kolom I)</th>
+                            <th class="p-3 font-bold uppercase tracking-wider text-[10px] text-center">Aksi</th>
                         </tr>
                     </thead>
-                    <tbody id="admin-product-table" class="divide-y divide-gray-100">
+                    <tbody id="admin-product-table" class="divide-y divide-gray-800/50">
                         <tr>
-                            <td colspan="7" class="text-center py-8 text-gray-400">Memuat data database...</td>
+                            <td colspan="7" class="text-center py-10 text-gray-500 font-medium">Memuat koneksi database...</td>
                         </tr>
                     </tbody>
                 </table>
@@ -149,34 +180,34 @@
         </div>
 
         <!-- SECTION 2: KELOLA PESANAN SPREADSHEET -->
-        <div id="admin-section-orders" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-4 md:p-6 hidden">
-            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-4 md:mb-6 border-b pb-4">
+        <div id="admin-section-orders" class="bg-card-bg rounded-2xl shadow-sm border border-gray-800 p-4 md:p-6 hidden relative overflow-hidden">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-4 md:mb-6 border-b border-gray-800 pb-4 relative z-10">
                 <div>
-                    <h2 class="text-base md:text-lg font-extrabold text-gray-800">Manajemen Pesanan Masuk</h2>
-                    <p class="text-xs text-gray-500">Kelola status pesanan (Pending / Sukses) langsung dari panel.</p>
+                    <h2 class="text-lg md:text-xl font-black text-white italic tracking-wide">PESANAN MASUK</h2>
+                    <p class="text-xs text-gray-500 mt-1 font-medium">Ubah status pesanan dan verifikasi bukti transfer.</p>
                 </div>
                 <div class="flex items-center gap-2 w-full sm:w-auto">
-                    <button onclick="loadAdminOrders()" class="w-full sm:w-auto bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs font-bold px-3.5 py-2 rounded-xl transition">🔄 Refresh Pesanan</button>
+                    <button onclick="loadAdminOrders()" class="w-full sm:w-auto bg-[#111827] border border-gray-700 hover:border-brand-cyan text-gray-300 hover:text-brand-cyan text-[11px] font-bold px-4 py-2.5 rounded-xl transition tracking-wide">🔄 Sinkronisasi Data</button>
                 </div>
             </div>
 
-            <div class="overflow-x-auto">
-                <table class="w-full text-left border-collapse text-xs min-w-[750px]">
+            <div class="overflow-x-auto relative z-10">
+                <table class="w-full text-left border-collapse text-xs min-w-[800px]">
                     <thead>
-                        <tr class="bg-gray-50 text-gray-500 border-b">
-                            <th class="p-3 font-bold">ID Order</th>
-                            <th class="p-3 font-bold">Tanggal</th>
-                            <th class="p-3 font-bold">Pembeli</th>
-                            <th class="p-3 font-bold">Pesanan</th>
-                            <th class="p-3 font-bold">Total</th>
-                            <th class="p-3 font-bold">Metode</th>
-                            <th class="p-3 font-bold">Status</th>
-                            <th class="p-3 font-bold text-center">Bukti / Aksi</th>
+                        <tr class="bg-[#0b1120] text-gray-400 border-b border-gray-800">
+                            <th class="p-3 font-bold uppercase tracking-wider text-[10px]">ID Order</th>
+                            <th class="p-3 font-bold uppercase tracking-wider text-[10px]">Timestamp</th>
+                            <th class="p-3 font-bold uppercase tracking-wider text-[10px]">Customer</th>
+                            <th class="p-3 font-bold uppercase tracking-wider text-[10px]">Item</th>
+                            <th class="p-3 font-bold uppercase tracking-wider text-[10px]">Total</th>
+                            <th class="p-3 font-bold uppercase tracking-wider text-[10px]">Payment</th>
+                            <th class="p-3 font-bold uppercase tracking-wider text-[10px]">Status</th>
+                            <th class="p-3 font-bold uppercase tracking-wider text-[10px] text-center">Verifikasi</th>
                         </tr>
                     </thead>
-                    <tbody id="admin-order-table" class="divide-y divide-gray-100">
+                    <tbody id="admin-order-table" class="divide-y divide-gray-800/50">
                         <tr>
-                            <td colspan="8" class="text-center py-8 text-gray-400">Memuat data pesanan...</td>
+                            <td colspan="8" class="text-center py-10 text-gray-500 font-medium">Sinkronisasi sheet...</td>
                         </tr>
                     </tbody>
                 </table>
@@ -185,53 +216,65 @@
     </main>
 
     <!-- MODAL TAMBAH / EDIT PRODUK -->
-    <div id="product-form-modal" class="fixed inset-0 bg-black bg-opacity-70 z-50 hidden flex items-center justify-center p-3 md:p-4">
-        <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full p-5 md:p-6 transform transition-all max-h-[90vh] overflow-y-auto text-left">
-            <div class="flex justify-between items-center mb-4 border-b pb-3">
-                <h3 id="modal-form-title" class="text-base md:text-lg font-bold text-gray-800">Tambah Produk Baru</h3>
-                <button onclick="closeProductFormModal()" class="text-gray-400 hover:text-gray-600 text-xl font-bold">✕</button>
+    <div id="product-form-modal" class="fixed inset-0 bg-[#070b14]/90 backdrop-blur-sm z-50 hidden flex items-center justify-center p-3 md:p-4">
+        <div class="bg-card-bg border border-brand-blue/30 rounded-3xl shadow-neon max-w-md w-full p-5 md:p-6 transform transition-all max-h-[90vh] overflow-y-auto text-left hide-scroll relative">
+            <div class="flex justify-between items-center mb-5 border-b border-gray-800 pb-3">
+                <h3 id="modal-form-title" class="text-base md:text-lg font-black text-white italic tracking-wide">TAMBAH PRODUK BARU</h3>
+                <button onclick="closeProductFormModal()" class="text-gray-500 hover:text-white bg-[#111827] w-8 h-8 rounded-full flex items-center justify-center font-bold transition">✕</button>
             </div>
             
-            <form id="db-product-form" onsubmit="saveProductDatabase(event)" class="space-y-3.5 text-xs">
+            <form id="db-product-form" onsubmit="saveProductDatabase(event)" class="space-y-4 text-xs">
                 <input type="hidden" id="form-action-type" value="add">
+                
                 <div>
-                    <label class="block font-bold text-gray-700 mb-1">ID Produk (Unik) *</label>
-                    <input type="text" id="db-id" required placeholder="cth: netflix_1bln" class="w-full px-3 py-2 bg-gray-50 border rounded-xl focus:ring-2 focus:ring-brand-btn">
+                    <label class="block font-bold text-gray-400 mb-1.5 uppercase tracking-wider text-[10px]">ID Produk (Unik) *</label>
+                    <input type="text" id="db-id" required placeholder="cth: netflix_1bln" class="w-full px-3.5 py-3 bg-[#0b1120] border border-gray-700 text-white rounded-xl focus:outline-none focus:border-brand-cyan focus:ring-1 focus:ring-brand-cyan">
                 </div>
                 <div>
-                    <label class="block font-bold text-gray-700 mb-1">Nama Produk *</label>
-                    <input type="text" id="db-nama" required placeholder="cth: Netflix Premium" class="w-full px-3 py-2 bg-gray-50 border rounded-xl focus:ring-2 focus:ring-brand-btn">
+                    <label class="block font-bold text-gray-400 mb-1.5 uppercase tracking-wider text-[10px]">Nama Produk *</label>
+                    <input type="text" id="db-nama" required placeholder="cth: Netflix Premium" class="w-full px-3.5 py-3 bg-[#0b1120] border border-gray-700 text-white rounded-xl focus:outline-none focus:border-brand-cyan focus:ring-1 focus:ring-brand-cyan">
                 </div>
                 <div>
-                    <label class="block font-bold text-gray-700 mb-1">Kategori / Varian *</label>
-                    <input type="text" id="db-kategori" required placeholder="cth: 1 Bulan / 4K UHD" class="w-full px-3 py-2 bg-gray-50 border rounded-xl focus:ring-2 focus:ring-brand-btn">
+                    <label class="block font-bold text-gray-400 mb-1.5 uppercase tracking-wider text-[10px]">Kategori / Varian *</label>
+                    <input type="text" id="db-kategori" required placeholder="cth: 1 Bulan / 4K UHD" class="w-full px-3.5 py-3 bg-[#0b1120] border border-gray-700 text-white rounded-xl focus:outline-none focus:border-brand-cyan focus:ring-1 focus:ring-brand-cyan">
                 </div>
-                <div class="grid grid-cols-2 gap-2">
+                
+                <div class="grid grid-cols-2 gap-3">
                     <div>
-                        <label class="block font-bold text-gray-700 mb-1">Harga Jual (Rp) *</label>
-                        <input type="number" id="db-harga" required placeholder="35000" class="w-full px-3 py-2 bg-gray-50 border rounded-xl focus:ring-2 focus:ring-brand-btn">
+                        <label class="block font-bold text-gray-400 mb-1.5 uppercase tracking-wider text-[10px]">Harga Jual (Rp) *</label>
+                        <input type="number" id="db-harga" required placeholder="35000" class="w-full px-3.5 py-3 bg-[#0b1120] border border-gray-700 text-white rounded-xl focus:outline-none focus:border-brand-cyan focus:ring-1 focus:ring-brand-cyan">
                     </div>
                     <div>
-                        <label class="block font-bold text-gray-700 mb-1">Harga Coret (Rp)</label>
-                        <input type="number" id="db-coret" placeholder="50000" class="w-full px-3 py-2 bg-gray-50 border rounded-xl focus:ring-2 focus:ring-brand-btn">
+                        <label class="block font-bold text-gray-400 mb-1.5 uppercase tracking-wider text-[10px]">Harga Coret (Rp)</label>
+                        <input type="number" id="db-coret" placeholder="50000" class="w-full px-3.5 py-3 bg-[#0b1120] border border-gray-700 text-white rounded-xl focus:outline-none focus:border-brand-cyan focus:ring-1 focus:ring-brand-cyan">
                     </div>
                 </div>
+                
                 <div>
-                    <label class="block font-bold text-gray-700 mb-1">URL Gambar Produk *</label>
-                    <input type="text" id="db-gambar" required placeholder="https://..." class="w-full px-3 py-2 bg-gray-50 border rounded-xl focus:ring-2 focus:ring-brand-btn">
+                    <label class="block font-bold text-gray-400 mb-1.5 uppercase tracking-wider text-[10px]">URL Link Gambar *</label>
+                    <input type="text" id="db-gambar" required placeholder="https://..." class="w-full px-3.5 py-3 bg-[#0b1120] border border-gray-700 text-white rounded-xl focus:outline-none focus:border-brand-cyan focus:ring-1 focus:ring-brand-cyan">
                 </div>
                 <div>
-                    <label class="block font-bold text-gray-700 mb-1">Badge (Opsional)</label>
-                    <input type="text" id="db-badge" placeholder="HOT / PROMO" class="w-full px-3 py-2 bg-gray-50 border rounded-xl focus:ring-2 focus:ring-brand-btn">
+                    <label class="block font-bold text-gray-400 mb-1.5 uppercase tracking-wider text-[10px]">Badge Promo (Opsional)</label>
+                    <input type="text" id="db-badge" placeholder="HOT / PREMIUM" class="w-full px-3.5 py-3 bg-[#0b1120] border border-gray-700 text-white rounded-xl focus:outline-none focus:border-brand-cyan focus:ring-1 focus:ring-brand-cyan">
                 </div>
                 <div>
-                    <label class="block font-bold text-gray-700 mb-1">Deskripsi Produk *</label>
-                    <textarea id="db-desc" rows="3" required placeholder="Tulis deskripsi..." class="w-full px-3 py-2 bg-gray-50 border rounded-xl focus:ring-2 focus:ring-brand-btn"></textarea>
+                    <label class="block font-bold text-gray-400 mb-1.5 uppercase tracking-wider text-[10px]">Deskripsi Singkat *</label>
+                    <textarea id="db-desc" rows="3" required placeholder="Tulis deskripsi detail..." class="w-full px-3.5 py-3 bg-[#0b1120] border border-gray-700 text-white rounded-xl focus:outline-none focus:border-brand-cyan focus:ring-1 focus:ring-brand-cyan"></textarea>
+                </div>
+                
+                <!-- Opsi Status / Stok (Kolom I) di bagian paling bawah modal edit/tambah -->
+                <div>
+                    <label class="block font-bold text-gray-400 mb-1.5 uppercase tracking-wider text-[10px]">Status Stok (Kolom I) *</label>
+                    <select id="db-status" required class="w-full px-3.5 py-3 bg-[#0b1120] border border-gray-700 text-white rounded-xl focus:outline-none focus:border-brand-cyan focus:ring-1 focus:ring-brand-cyan font-bold">
+                        <option value="Aktif">Aktif</option>
+                        <option value="Kosong">Kosong</option>
+                    </select>
                 </div>
 
-                <div class="pt-3 border-t flex gap-2">
-                    <button type="submit" id="btn-save-db" class="flex-1 bg-brand-btn text-white font-bold py-2.5 rounded-xl hover:bg-blue-700 transition">Simpan Data</button>
-                    <button type="button" onclick="closeProductFormModal()" class="bg-gray-100 text-gray-600 font-bold px-4 py-2.5 rounded-xl hover:bg-gray-200 transition">Batal</button>
+                <div class="pt-4 border-t border-gray-800 flex gap-3 mt-2">
+                    <button type="button" onclick="closeProductFormModal()" class="w-1/3 bg-[#111827] border border-gray-700 text-gray-300 font-bold px-4 py-3 rounded-xl hover:bg-gray-800 transition uppercase tracking-wide text-[11px]">Batal</button>
+                    <button type="submit" id="btn-save-db" class="w-2/3 bg-gradient-to-r from-brand-btn to-brand-cyan text-black font-black italic py-3 rounded-xl hover:shadow-neon transition-all uppercase tracking-widest text-[11px]">SIMPAN DATA</button>
                 </div>
             </form>
         </div>
@@ -239,7 +282,7 @@
 
     <!-- SCRIPT ADMIN -->
     <script>
-        const API_URL = "https://script.google.com/macros/s/AKfycbwABkDOQJpkI-t-u9YwcQ0wrSuteURNjDhGX9cDFda13NhCsoAUWa2HSq6rs3b5HWMs/exec"; 
+        const API_URL = "https://script.google.com/macros/s/AKfycbzkytFqcwEici4PutsDSy3c6o7SbHNuIEC0wyt5vCFMXc6n4iV2jVP3hD9sZJfqzHZH/exec"; 
         const ADMIN_PASS_KEY = "rullz_admin_logged_in";
         const formatRupiah = (angka) => 'Rp ' + Number(angka).toLocaleString('id-ID');
 
@@ -255,9 +298,11 @@
             if (passwordInput.type === 'password') {
                 passwordInput.type = 'text';
                 eyeIcon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.542-7a10.05 10.05 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.542 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />`;
+                eyeIcon.classList.add('text-brand-cyan');
             } else {
                 passwordInput.type = 'password';
                 eyeIcon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />`;
+                eyeIcon.classList.remove('text-brand-cyan');
             }
         }
 
@@ -268,7 +313,7 @@
                 localStorage.setItem(ADMIN_PASS_KEY, "true");
                 showDashboard();
             } else {
-                alert("Password Salah!");
+                alert("Password Salah! Akses ditolak.");
             }
         }
 
@@ -276,6 +321,7 @@
             localStorage.removeItem(ADMIN_PASS_KEY);
             document.getElementById('admin-dashboard-panel').classList.add('hidden');
             document.getElementById('admin-login-screen').classList.remove('hidden');
+            document.getElementById('admin-password').value = "";
         }
 
         function showDashboard() {
@@ -291,16 +337,19 @@
             const btnProducts = document.getElementById('tab-btn-products');
             const btnOrders = document.getElementById('tab-btn-orders');
 
+            const activeClass = "bg-gradient-to-r from-brand-blue to-brand-cyan text-black text-xs font-black italic px-5 py-2.5 rounded-xl transition-all shadow-neon whitespace-nowrap border border-cyan-400/50 uppercase tracking-wide";
+            const inactiveClass = "bg-[#111827] text-gray-400 text-xs font-bold px-5 py-2.5 rounded-xl transition hover:text-brand-cyan hover:bg-[#1f2937] border border-gray-800 whitespace-nowrap uppercase tracking-wide";
+
             if(tab === 'products') {
                 secProducts.classList.remove('hidden');
                 secOrders.classList.add('hidden');
-                btnProducts.className = "bg-brand-btn text-white text-xs font-bold px-4 py-2 rounded-xl transition shadow-sm whitespace-nowrap";
-                btnOrders.className = "bg-gray-100 text-gray-600 text-xs font-bold px-4 py-2 rounded-xl transition hover:bg-gray-200 whitespace-nowrap";
+                btnProducts.className = activeClass;
+                btnOrders.className = inactiveClass;
             } else {
                 secProducts.classList.add('hidden');
                 secOrders.classList.remove('hidden');
-                btnOrders.className = "bg-brand-btn text-white text-xs font-bold px-4 py-2 rounded-xl transition shadow-sm whitespace-nowrap";
-                btnProducts.className = "bg-gray-100 text-gray-600 text-xs font-bold px-4 py-2 rounded-xl transition hover:bg-gray-200 whitespace-nowrap";
+                btnOrders.className = activeClass;
+                btnProducts.className = inactiveClass;
                 loadAdminOrders();
             }
         }
@@ -308,7 +357,7 @@
         let currentDatabaseProducts = [];
         async function loadAdminProducts() {
             const tableBody = document.getElementById('admin-product-table');
-            tableBody.innerHTML = `<tr><td colspan="7" class="text-center py-8 text-gray-400"><div class="loader mx-auto mb-2"></div>Memuat data...</td></tr>`;
+            tableBody.innerHTML = `<tr><td colspan="7" class="text-center py-10 text-gray-500"><div class="loader mx-auto mb-2"></div>Memuat sinkronisasi...</td></tr>`;
             
             try {
                 const response = await fetch(API_URL);
@@ -317,34 +366,45 @@
 
                 tableBody.innerHTML = '';
                 if(dataRaw.length === 0) {
-                    tableBody.innerHTML = `<tr><td colspan="7" class="text-center py-8 text-gray-400">Database kosong.</td></tr>`;
+                    tableBody.innerHTML = `<tr><td colspan="7" class="text-center py-10 text-gray-500 font-medium">Database kosong.</td></tr>`;
                     return;
                 }
 
                 dataRaw.forEach((p, index) => {
+                    const statusVal = (p.status || 'Aktif').trim();
+                    const isKosong = statusVal.toLowerCase() === 'kosong';
+                    
+                    const statusBadgeHTML = isKosong
+                        ? `<span class="bg-red-900/30 border border-red-500/50 text-red-400 px-2.5 py-1 rounded-md text-[10px] font-black uppercase tracking-wider">Kosong</span>`
+                        : `<span class="bg-green-900/30 border border-green-500/50 text-green-400 px-2.5 py-1 rounded-md text-[10px] font-black uppercase tracking-wider">Aktif</span>`;
+
                     tableBody.innerHTML += `
-                        <tr class="hover:bg-gray-50 transition">
-                            <td class="p-3 font-bold text-brand-blue">${p.id_produk || '-'}</td>
-                            <td class="p-3"><img src="${p.url_gambar}" class="w-10 h-10 object-cover rounded-lg border" onerror="this.src='https://via.placeholder.com/40'"></td>
-                            <td class="p-3 font-semibold text-gray-800">${p.nama_produk || '-'}</td>
-                            <td class="p-3 text-gray-600">${p.kategori || '-'}</td>
-                            <td class="p-3 font-bold text-brand-red">${formatRupiah(p.harga_jual || 0)}</td>
-                            <td class="p-3"><span class="bg-gray-100 text-gray-700 px-2 py-0.5 rounded text-[10px] font-bold">${p.badge || '-'}</span></td>
+                        <tr class="hover:bg-gray-800/30 transition duration-300">
+                            <td class="p-3 font-bold text-gray-300">${p.id_produk || '-'}</td>
+                            <td class="p-3">
+                                <div class="w-12 h-12 rounded-lg bg-[#070b14] border border-gray-700 flex items-center justify-center overflow-hidden">
+                                    <img src="${p.url_gambar}" class="w-full h-full object-cover" onerror="this.src='logo.png'">
+                                </div>
+                            </td>
+                            <td class="p-3 font-bold text-white tracking-wide">${p.nama_produk || '-'}</td>
+                            <td class="p-3 text-gray-400 font-medium">${p.kategori || '-'}</td>
+                            <td class="p-3 font-black text-brand-cyan">${formatRupiah(p.harga_jual || 0)}</td>
+                            <td class="p-3">${statusBadgeHTML}</td>
                             <td class="p-3 text-center space-x-1 whitespace-nowrap">
-                                <button onclick="editProduct(${index})" class="bg-blue-50 text-brand-btn px-2.5 py-1 rounded-lg font-bold hover:bg-blue-100 transition">Edit</button>
-                                <button onclick="deleteProduct('${p.id_produk}')" class="bg-red-50 text-brand-red px-2.5 py-1 rounded-lg font-bold hover:bg-red-100 transition">Hapus</button>
+                                <button onclick="editProduct(${index})" class="bg-[#111827] border border-gray-600 text-gray-300 px-3.5 py-1.5 rounded-lg font-bold hover:border-brand-cyan hover:text-brand-cyan transition text-[10px] uppercase">Edit</button>
+                                <button onclick="deleteProduct('${p.id_produk}')" class="bg-red-900/20 border border-red-900/50 text-red-400 px-3.5 py-1.5 rounded-lg font-bold hover:bg-red-900/50 hover:text-red-300 transition text-[10px] uppercase">Hapus</button>
                             </td>
                         </tr>
                     `;
                 });
             } catch (err) {
-                tableBody.innerHTML = `<tr><td colspan="7" class="text-center py-8 text-red-500 font-bold">Gagal mengambil data.</td></tr>`;
+                tableBody.innerHTML = `<tr><td colspan="7" class="text-center py-10 text-red-400 bg-red-900/10 font-bold">Gagal mengambil data database.</td></tr>`;
             }
         }
 
         async function loadAdminOrders() {
             const tableBody = document.getElementById('admin-order-table');
-            tableBody.innerHTML = `<tr><td colspan="8" class="text-center py-8 text-gray-400"><div class="loader mx-auto mb-2"></div>Memuat pesanan...</td></tr>`;
+            tableBody.innerHTML = `<tr><td colspan="8" class="text-center py-10 text-gray-500"><div class="loader mx-auto mb-2"></div>Sinkronisasi Sheet...</td></tr>`;
             
             try {
                 const response = await fetch(API_URL + "?action=get_orders");
@@ -352,7 +412,7 @@
 
                 tableBody.innerHTML = '';
                 if(!orders || orders.length === 0) {
-                    tableBody.innerHTML = `<tr><td colspan="8" class="text-center py-8 text-gray-400">Belum ada data pesanan.</td></tr>`;
+                    tableBody.innerHTML = `<tr><td colspan="8" class="text-center py-10 text-gray-500 font-medium">Belum ada data pesanan baru.</td></tr>`;
                     loadSalesStatistics([]); 
                     return;
                 }
@@ -360,25 +420,28 @@
                 orders.forEach((o) => {
                     const statusVal = o.status_order || o.status || 'Pending';
                     const statusBadge = statusVal === 'Sukses' 
-                        ? `<span class="bg-green-100 text-green-700 px-2 py-1 rounded-full text-[10px] font-bold">Sukses</span>` 
-                        : `<span class="bg-amber-100 text-amber-700 px-2 py-1 rounded-full text-[10px] font-bold">Pending</span>`;
+                        ? `<span class="bg-green-900/30 border border-green-500/30 text-green-400 px-2 py-1.5 rounded-md text-[9px] font-black uppercase tracking-wider shadow-[0_0_10px_rgba(34,197,94,0.1)]">Sukses</span>` 
+                        : `<span class="bg-amber-900/30 border border-amber-500/30 text-amber-400 px-2 py-1.5 rounded-md text-[9px] font-black uppercase tracking-wider">Pending</span>`;
                     
-                    const toggleBtnText = statusVal === 'Sukses' ? 'Jadikan Pending' : 'Jadikan Sukses';
+                    const toggleBtnText = statusVal === 'Sukses' ? 'Jadikan Pending' : 'Approve Sukses';
+                    const toggleBtnStyle = statusVal === 'Sukses' 
+                        ? 'bg-[#111827] text-gray-400 border border-gray-700 hover:text-amber-400 hover:border-amber-500/50' 
+                        : 'bg-green-900/20 text-green-400 border border-green-500/50 hover:bg-green-600 hover:text-black';
                     const toggleTargetStatus = statusVal === 'Sukses' ? 'Pending' : 'Sukses';
                     const buktiLink = o.bukti_transfer || o.bukti || '#';
 
                     tableBody.innerHTML += `
-                        <tr class="hover:bg-gray-50 transition">
-                            <td class="p-3 font-bold text-brand-blue">${o.id_order || '-'}</td>
-                            <td class="p-3 text-gray-500 text-[11px] whitespace-nowrap">${o.tanggal || '-'}</td>
-                            <td class="p-3 font-semibold text-gray-800">${o.nama_pembeli || '-'}<br><span class="text-[10px] text-gray-400 font-normal">${o.no_wa || '-'}</span></td>
-                            <td class="p-3 text-gray-700">${o.detail_pesanan || '-'}</td>
-                            <td class="p-3 font-bold text-brand-red whitespace-nowrap">${formatRupiah(o.total_bayar || 0)}</td>
-                            <td class="p-3 font-medium">${o.metode_bayar || '-'}</td>
+                        <tr class="hover:bg-gray-800/30 transition duration-300">
+                            <td class="p-3 font-bold text-brand-cyan">${o.id_order || '-'}</td>
+                            <td class="p-3 text-gray-500 text-[10px] whitespace-nowrap font-medium">${o.tanggal || '-'}</td>
+                            <td class="p-3 font-bold text-gray-200">${o.nama_pembeli || '-'}<br><span class="text-[9px] text-gray-500 font-normal tracking-wide">${o.no_wa || '-'}</span></td>
+                            <td class="p-3 text-gray-400 text-[11px] leading-tight max-w-[150px] truncate" title="${o.detail_pesanan}">${o.detail_pesanan || '-'}</td>
+                            <td class="p-3 font-black text-brand-cyan whitespace-nowrap">${formatRupiah(o.total_bayar || 0)}</td>
+                            <td class="p-3 font-bold text-gray-400 uppercase text-[10px] tracking-wider">${o.metode_bayar || '-'}</td>
                             <td class="p-3">${statusBadge}</td>
-                            <td class="p-3 text-center space-y-1 whitespace-nowrap">
-                                <a href="${buktiLink}" target="_blank" class="block bg-blue-50 text-brand-btn px-2 py-1 rounded font-bold hover:bg-blue-100 transition text-[10px]">Lihat Bukti</a>
-                                <button onclick="updateOrderStatus('${o.id_order}', '${toggleTargetStatus}')" class="w-full bg-gray-800 text-white px-2 py-1 rounded font-bold hover:bg-gray-950 transition text-[10px]">${toggleBtnText}</button>
+                            <td class="p-3 text-center space-y-1.5 whitespace-nowrap">
+                                <a href="${buktiLink}" target="_blank" class="block w-full text-center bg-[#070b14] text-brand-cyan border border-brand-cyan/40 px-2 py-1.5 rounded-lg font-bold hover:bg-brand-blue/20 hover:shadow-neon transition text-[9px] uppercase tracking-wider">Cek Bukti Resi</a>
+                                <button onclick="updateOrderStatus('${o.id_order}', '${toggleTargetStatus}')" class="w-full ${toggleBtnStyle} px-2 py-1.5 rounded-lg font-bold transition duration-300 text-[9px] uppercase tracking-wider">${toggleBtnText}</button>
                             </td>
                         </tr>
                     `;
@@ -387,26 +450,24 @@
                 loadSalesStatistics(orders);
 
             } catch (err) {
-                tableBody.innerHTML = `<tr><td colspan="8" class="text-center py-8 text-red-500 font-bold">Gagal memuat pesanan dari Apps Script.</td></tr>`;
+                tableBody.innerHTML = `<tr><td colspan="8" class="text-center py-10 text-red-400 bg-red-900/10 font-bold">Gagal sinkronisasi data pesanan.</td></tr>`;
             }
         }
 
         async function updateOrderStatus(idOrder, newStatus) {
-            if(confirm(`Ubah status pesanan ${idOrder} menjadi ${newStatus}?`)) {
+            if(confirm(`Ubah otorisasi status pesanan ${idOrder} menjadi ${newStatus}?`)) {
                 try {
                     await fetch(API_URL, {
                         method: 'POST',
                         body: JSON.stringify({ action: 'update_status', id_order: idOrder, status_order: newStatus })
                     });
-                    alert("Status pesanan berhasil diperbarui!");
                     loadAdminOrders();
                 } catch(e) {
-                    alert("Gagal memperbarui status.");
+                    alert("Gagal memperbarui status ke database Google Sheet.");
                 }
             }
         }
 
-        // Kalkulasi Statistik Penjualan (Hanya status Sukses)
         function loadSalesStatistics(orders) {
             let todaySum = 0;
             let yesterdaySum = 0;
@@ -440,16 +501,17 @@
         }
 
         function openAddProductModal() {
-            document.getElementById('modal-form-title').innerText = "Tambah Produk Baru ke Database";
+            document.getElementById('modal-form-title').innerText = "INPUT DATABASE PRODUK";
             document.getElementById('form-action-type').value = "add";
             document.getElementById('db-product-form').reset();
             document.getElementById('db-id').disabled = false;
+            document.getElementById('db-status').value = "Aktif"; // Default Aktif saat tambah baru
             document.getElementById('product-form-modal').classList.remove('hidden');
         }
 
         function editProduct(index) {
             const p = currentDatabaseProducts[index];
-            document.getElementById('modal-form-title').innerText = "Edit Produk Database";
+            document.getElementById('modal-form-title').innerText = "EDIT DATABASE PRODUK";
             document.getElementById('form-action-type').value = "edit";
             document.getElementById('db-id').value = p.id_produk;
             document.getElementById('db-id').disabled = true;
@@ -460,6 +522,7 @@
             document.getElementById('db-gambar').value = p.url_gambar;
             document.getElementById('db-badge').value = p.badge || '';
             document.getElementById('db-desc').value = p.deskripsi;
+            document.getElementById('db-status').value = p.status ? p.status.trim() : "Aktif"; // Ambil status asli dari sheet (Kolom I)
             
             document.getElementById('product-form-modal').classList.remove('hidden');
         }
@@ -480,35 +543,35 @@
                 harga_coret: document.getElementById('db-coret').value,
                 url_gambar: document.getElementById('db-gambar').value,
                 badge: document.getElementById('db-badge').value,
-                deskripsi: document.getElementById('db-desc').value
+                deskripsi: document.getElementById('db-desc').value,
+                status: document.getElementById('db-status').value // Mengirim pilihan Aktif/Kosong langsung ke Kolom I spreadsheet
             };
 
             const btn = document.getElementById('btn-save-db');
-            btn.innerHTML = 'Menyimpan...';
+            const originalText = btn.innerHTML;
+            btn.innerHTML = 'SYNCING...';
             btn.disabled = true;
 
             try {
                 await fetch(API_URL, { method: 'POST', body: JSON.stringify(payload) });
-                alert("Berhasil memperbarui database!");
                 closeProductFormModal();
                 loadAdminProducts();
             } catch (err) {
-                alert("Gagal menyimpan ke database.");
+                alert("Gagal koneksi ke database Google Sheet.");
                 closeProductFormModal();
             } finally {
-                btn.innerHTML = 'Simpan Data';
+                btn.innerHTML = originalText;
                 btn.disabled = false;
             }
         }
 
         async function deleteProduct(id_produk) {
-            if(confirm(`Yakin ingin menghapus produk ${id_produk} dari database?`)) {
+            if(confirm(`PERINGATAN: Yakin ingin menghapus produk dengan ID [${id_produk}] secara permanen dari database?`)) {
                 try {
                     await fetch(API_URL, { method: 'POST', body: JSON.stringify({ action: 'delete_product', id_produk: id_produk }) });
-                    alert("Produk berhasil dihapus.");
                     loadAdminProducts();
                 } catch(e) {
-                    alert("Gagal menghapus produk.");
+                    alert("Akses database gagal, produk tidak terhapus.");
                 }
             }
         }
