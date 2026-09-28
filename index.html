@@ -59,7 +59,7 @@
             </a>
             
             <div class="hidden md:flex items-center gap-6 text-sm font-semibold text-gray-300">
-                <a href="#cara-order" class="hover:text-brand-cyan transition duration-300">Cara Order</a>
+                <a href="#sponsor-section" class="hover:text-brand-cyan transition duration-300">Promo</a>
                 <a href="https://wa.me/6281326016019" target="_blank" class="hover:text-brand-cyan transition duration-300">Kontak</a>
                 <button onclick="openHistoryModal()" class="bg-gradient-to-r from-brand-blue to-cyan-600 text-white px-4 py-2 rounded-xl hover:shadow-neon transition-all duration-300 font-bold border border-cyan-500/30">Riwayat</button>
             </div>
@@ -72,33 +72,60 @@
         </div>
 
         <div id="mobile-menu" class="hidden md:hidden bg-[#0b1120] border-t border-gray-800 px-4 pt-3 pb-5 space-y-3 shadow-xl">
-            <a href="#cara-order" onclick="toggleMobileMenu()" class="block text-sm font-semibold text-gray-300 hover:text-brand-cyan transition">Cara Order</a>
+            <a href="#sponsor-section" onclick="toggleMobileMenu()" class="block text-sm font-semibold text-gray-300 hover:text-brand-cyan transition">Promo</a>
             <a href="https://wa.me/6281326016019" target="_blank" class="block text-sm font-semibold text-gray-300 hover:text-brand-cyan transition">Kontak</a>
             <button onclick="openHistoryModal(); toggleMobileMenu();" class="w-full bg-gradient-to-r from-brand-blue to-cyan-600 text-white text-sm font-bold py-2.5 rounded-xl hover:shadow-neon transition-all border border-cyan-500/30 mt-2">Lihat Riwayat</button>
         </div>
 
-        <div class="bg-brand-blue/10 text-brand-cyan text-[11px] md:text-xs text-center py-1.5 font-semibold border-t border-brand-cyan/20 flex justify-center items-center gap-2">
-            <span class="relative flex h-2 w-2"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span></span>
-            Siap Melayani 28 Jam
+        <div class="bg-brand-blue/10 text-brand-cyan text-[11px] md:text-xs py-1.5 font-semibold border-t border-brand-cyan/20 overflow-hidden relative flex whitespace-nowrap">
+            <div class="inline-flex items-center shrink-0 animate-marquee">
+                <span class="inline-flex items-center gap-2 pr-12">
+                    <span class="relative flex h-2 w-2 shrink-0">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
+                    </span>
+                    <span>Selamat atas Wisudawan Anggota Liga Malam: Muh. Khairul Mustaqim, S.H | Muh. Ibnu Mundzir, S.TP | Muh. Syahdan Matdoan, S.TP | Muh. Irwandi, S.Psi | Ikramulwali, S.Pd | Ilham Iqyanuddin, S.Pd | Muh. Afdal, S.TP | Rafa Masari, S.H | Mahfud Rifai, S.Hum | Gufron Ihsan, S.H | Moh. Atoillah, S.H | Rozi Aldi, S.Hum</span>
+                </span>
+            </div>
+            <!-- Duplicate untuk efek loop menyambung tanpa jeda/cacat -->
+            <div class="inline-flex items-center shrink-0 animate-marquee" aria-hidden="true">
+                <span class="inline-flex items-center gap-2 pr-12">
+                    <span class="relative flex h-2 w-2 shrink-0">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
+                    </span>
+                    <span>Selamat atas Wisudawan Anggota Liga Malam: Muh. Khairul Mustaqim, S.H | Muh. Ibnu Mundzir, S.TP | Muh. Syahdan Matdoan, S.TP | Muh. Irwandi, S.Psi | Ikramulwali, S.Pd | Ilham Iqyanuddin, S.Pd | Muh. Afdal, S.TP | Rafa Masari, S.H | Mahfud Rifai, S.Hum | Gufron Ihsan, S.H | Moh. Atoillah, S.H | Rozi Aldi, S.Hum</span>
+                </span>
+            </div>
         </div>
+
+        <style>
+            @keyframes marquee {
+                0% { transform: translateX(0%); }
+                100% { transform: translateX(-100%); }
+            }
+            .animate-marquee {
+                animation: marquee 40s linear infinite;
+            }
+        </style>
     </header>
 
-    <section id="cara-order" class="container mx-auto px-3 sm:px-4 mt-6 max-w-6xl">
-        <div class="bg-gradient-to-br from-[#0c1427] via-[#111828] to-[#0a101d] rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 text-center relative border border-gray-800 shadow-2xl">
-            <h1 class="text-xl sm:text-2xl md:text-3xl font-black mb-3 tracking-tight text-white uppercase italic">
-                Rullz<span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-cyan to-blue-500">Store</span> • Produk Digital Premium
-            </h1>
-            <p class="text-xs sm:text-sm text-gray-400 max-w-2xl mx-auto mb-6 leading-relaxed font-medium">
-                Belanja produk digital dengan tampilan lebih rapi, harga jelas, dan alur checkout yang mudah seperti marketplace.
-            </p>
-            <div class="inline-block bg-[#162032] text-brand-cyan border border-brand-cyan/30 text-xs font-bold px-4 py-2.5 rounded-xl shadow-md mb-6 leading-normal max-w-full">
-                📱 Pilih Produk ➔ Checkout ➔ Invoice Muncul ➔ Screenshot ➔ Konfirmasi WA
-            </div>
-            <div class="flex flex-wrap justify-center items-center gap-2 sm:gap-3">
-                <span class="bg-[#0b1120] border border-gray-700 text-gray-300 text-xs font-semibold px-3 py-1.5 rounded-full flex items-center gap-1.5">⚡ Fast Respon</span>
-                <span class="bg-[#0b1120] border border-gray-700 text-gray-300 text-xs font-semibold px-3 py-1.5 rounded-full flex items-center gap-1.5">🛡️ Full Garansi</span>
-                <span class="bg-[#0b1120] border border-gray-700 text-gray-300 text-xs font-semibold px-3 py-1.5 rounded-full flex items-center gap-1.5">💬 Pelayanan Ramah</span>
-                <span class="bg-[#0b1120] border border-gray-700 text-gray-300 text-xs font-semibold px-3 py-1.5 rounded-full flex items-center gap-1.5">🔒 Aman & Terpercaya</span>
+    <!-- BAGIAN SPONSOR / IKLAN SLIDER -->
+    <section id="sponsor-section" class="container mx-auto px-3 sm:px-4 mt-6 max-w-3xl">
+        <div class="relative w-full rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border border-gray-800 bg-[#0c1427]">
+            
+            <!-- Gambar 1 (Posisi relatif untuk menentukan tinggi area box iklan) -->
+            <img src="i1.jpeg" alt="Iklan Sponsor 1" class="ad-slide w-full h-auto block transition-opacity duration-1000 opacity-100" onerror="this.src='https://via.placeholder.com/800x400?text=Iklan+1'">
+            
+            <!-- Gambar 2 (Posisi absolut menimpa gambar 1) -->
+            <img src="i2.jpeg" alt="Iklan Sponsor 2" class="ad-slide absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0" onerror="this.src='https://via.placeholder.com/800x400?text=Iklan+2'">
+            
+            <!-- Gambar 3 (Posisi absolut menimpa gambar 1) -->
+            <img src="i3.jpeg" alt="Iklan Sponsor 3" class="ad-slide absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0" onerror="this.src='https://via.placeholder.com/800x400?text=Iklan+3'">
+            
+            <!-- Label Sponsor -->
+            <div class="absolute top-3 right-3 bg-black/60 backdrop-blur-sm border border-gray-600/50 text-gray-300 text-[10px] font-bold px-2 py-1 rounded z-20">
+                Liga Malam Team
             </div>
         </div>
     </section>
@@ -783,6 +810,28 @@
 
         function redirectToWA() { if(savedWhatsAppLink) window.open(savedWhatsAppLink, '_blank'); }
         function toggleMobileMenu() { document.getElementById('mobile-menu').classList.toggle('hidden'); }
+
+        // ============================================
+        // LOGIKA SLIDER IKLAN (FADE EFFECT)
+        // ============================================
+        document.addEventListener('DOMContentLoaded', () => {
+            const slides = document.querySelectorAll('.ad-slide');
+            let currentSlide = 0;
+            if(slides.length > 0) {
+                setInterval(() => {
+                    // Sembunyikan gambar saat ini
+                    slides[currentSlide].classList.remove('opacity-100');
+                    slides[currentSlide].classList.add('opacity-0');
+                    
+                    // Pindah ke gambar berikutnya (loop kembali ke 0 jika sudah di akhir)
+                    currentSlide = (currentSlide + 1) % slides.length;
+                    
+                    // Tampilkan gambar berikutnya
+                    slides[currentSlide].classList.remove('opacity-0');
+                    slides[currentSlide].classList.add('opacity-100');
+                }, 3500); // Durasi per slide: 3.5 detik (3500ms)
+            }
+        });
     </script>
 </body>
 </html>
